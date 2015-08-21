@@ -8,7 +8,7 @@
 </head>
 <body>
 <nav class="navbar navbar-default">
-  <div class="container-fluid">
+  <div class="container">
     <div class="navbar-header">
       <%= link_to root_path, class: 'navbar-brand' do %>
         <i class="glyphicon glyphicon-home"></i> Blog World
@@ -27,12 +27,6 @@
             <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
           </li>
         </div>
-    <% else %>
-      <div class="col-xs-1 pull-right">
-        <li>
-          <%= link_to('Login', new_user_session_path) %>
-        </li>
-      </div>
     <% end %>
     </div>
   </div>
@@ -42,7 +36,8 @@
 </div>
 <div class="row">
   <div class="col-xs-3">
-    <h3>Off-Social-Face-Off!</h3>
+    <h5>Put down your thoughts. Who knows, it just might be the next talk-of-the-town!</h5>
+    <%= image_tag 'keep_calm.png', :size => "260x180" %>
   </div>
   <div class="col-xs-9">
     <%= yield %>

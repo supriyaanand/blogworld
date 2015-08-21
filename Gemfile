@@ -15,6 +15,8 @@ gem 'devise'
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails'
 gem 'kaminari'
+# Web server
+gem 'passenger'
 # Required for deploying on Heroku
 gem 'rails_12factor'
 

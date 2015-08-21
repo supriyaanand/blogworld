@@ -1,3 +1,32 @@
-<h1>Hello, <%= @user.name %>!</h1>
+<% if !user_signed_in? %>
+  <%= render 'devise/sessions/new' %>
 
-<%= link_to 'Click to find a personalized curation of blog articles!', controller: 'articles' %>
+  <h3>Hey there! </h3>
+
+  <h4>You're on Blog World! Good job!</h4>
+
+  <p>
+    An amazing journey is about to begin! There's magic in the air. Writing is a whole different
+    world!
+  </p>
+
+  <p>
+    Welcome.
+  </p>
+
+<% else %>
+
+  <h3>Hello, <%= @user.name %></h3>
+
+  Good to see you back here!
+
+  <% if !@articles.empty? %>
+    Here are the posts you've published recently:
+    <hr>
+    <div>
+      <%= render 'articles/index' %>
+    </div>
+  <% end %>
+<% end %>
+
+
