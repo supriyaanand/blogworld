@@ -8,9 +8,10 @@
   <%= @article.text %>
 </p>
 
-<button class="btn btn-primary" data-toggle="collapse"
-        data-target="#comments">Comments</button>
-<div id="comments" class="collapse">
+<hr>
+
+<button class="btn btn-primary" data-toggle="collapse" data-target="#comments">Comments</button>
+<div id="comments" class="collapse in">
 <% if !@article.comments.empty? %>
   <%= render @article.comments %>
 <% else %>
@@ -18,8 +19,26 @@
 <% end %>
 </div>
 
-<h2>Add a comment:</h2>
-<%= render 'comments/form' %>
+<hr>
 
-<%= link_to 'Edit', edit_article_path(@article), class: 'btn btn-primary btn-xs' %> |
+<button class="btn btn-primary" data-toggle="collapse" data-target="#add_comment">Add Comment</button>
+<div id="add_comment" class="collapse">
+  <%= form_for([@article, @article.comments.build]) do |f| %>
+    <p class="form-group">
+      <%= f.label :commenter %><br>
+      <%= f.text_field :commenter, class: 'form-control col-md-4' %>
+    </p>
+    <p class="form-group">
+      <%= f.label :body %><br>
+      <%= f.text_area :body, class: 'form-control col-md-4' %>
+    </p>
+    <p>
+      <%= f.submit %>
+    </p>
+  <% end %>
+</div>
+
+<div class="links">
+<%= link_to 'Edit Post', edit_article_path(@article), class: 'btn btn-primary btn-xs' %> |
 <%= link_to 'Back', articles_path, class: 'btn btn-primary btn-xs' %>
+</div>

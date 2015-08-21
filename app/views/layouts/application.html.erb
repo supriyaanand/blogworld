@@ -1,31 +1,51 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Blog</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <title>Blog World</title>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
-<div id="main-container" class="container">
-  <div class="row">
-    <div class="col-xs-3">
-      <% if user_signed_in? %>
-        <li>
-          <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
-        </li>
-      <% else %>
-        <li>
-          <%= link_to('Login', new_user_session_path)  %>
-        </li>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <%= link_to root_path, class: 'navbar-brand' do %>
+        <i class="glyphicon glyphicon-home"></i> Blog World
       <% end %>
-      <h3>Off-Social-Face-Off!</h3>
     </div>
-    <div class="col-xs-9">
-      <%= yield %>
+    <% if user_signed_in? %>
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li><%= link_to articles_path do %> View all posts
+            <% end %></li>
+          <li><%= link_to new_article_path do %> Add a post
+            <% end %></li>
+        </ul>
+        <div class="col-xs-1 pull-right">
+          <li>
+            <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
+          </li>
+        </div>
+    <% else %>
+      <div class="col-xs-1 pull-right">
+        <li>
+          <%= link_to('Login', new_user_session_path) %>
+        </li>
+      </div>
+    <% end %>
     </div>
+  </div>
+</nav>
+<div class="row">
+  <%= render 'layouts/messages' %>
+</div>
+<div class="row">
+  <div class="col-xs-3">
+    <h3>Off-Social-Face-Off!</h3>
+  </div>
+  <div class="col-xs-9">
+    <%= yield %>
   </div>
 </div>
 </body>

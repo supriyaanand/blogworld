@@ -13,6 +13,7 @@ class ArticlesController < ApplicationController
     @article = Article.new(article_params)
 
     if @article.save
+      flash[:notice] = "Post created successfully!"
       redirect_to @article
     else
       render 'new'
@@ -31,6 +32,7 @@ class ArticlesController < ApplicationController
     @article = Article.find(params[:id])
 
     if @article.update(article_params)
+      flash[:notice] = "Post updated successfully!"
       redirect_to @article
     else
       render 'edit'
